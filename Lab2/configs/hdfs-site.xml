@@ -1,0 +1,29 @@
+<configuration>
+
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+
+  <property>
+    <name>dfs.name.dir</name>
+    <value>/tmp/hadoop-root/dfs/name</value>
+    <description>Determines where on the local filesystem the DFS name node
+      should store the name table.
+    </description>
+  </property>
+
+  <property>
+    <name>dfs.data.dir</name>
+    <value>/tmp/hadoop-root/dfs/data</value>
+    <description>Determines where on the local filesystem an DFS data node
+       should store its blocks.
+    </description>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>0.0.0.0:9870</value>
+  </property>
+
+</configuration>
