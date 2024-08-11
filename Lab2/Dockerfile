@@ -31,13 +31,17 @@ RUN \
   chmod 0600 ~/.ssh/authorized_keys
 
 # copy hadoop configs
-ADD configs/*xml $HADOOP_HOME/etc/hadoop/
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
 
 # copy ssh config
-ADD configs/ssh_config /root/.ssh/config
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/ssh_config /root/.ssh/config
 
 # copy script to start hadoop
-ADD start-hadoop.sh start-hadoop.sh
+ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/start-hadoop.sh start-hadoop.sh
 
 # expose various ports
 EXPOSE 9870 8088 8032 50070 50075 50030 50060
