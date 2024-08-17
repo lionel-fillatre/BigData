@@ -13,11 +13,11 @@ RUN \
   pip install jupyterlab
 
 # download coursier (check automatically your system)
-RUN if arch=="aarch64"; then \
-     curl -fL "https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-pc-linux.gz" | gzip -d > cs; \
-   else \
-     curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > cs; \
-   fi
+RUN if [ $(uname -m) = "aarch64" ]; then \ 
+	curl -fL "https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-pc-linux.gz" | gzip -d > cs; \
+elif [ $(uname -m) = "x86_64" ]; then \ 
+	curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > cs; \
+fi
 
 # install coursier, scala and almond
 RUN \
@@ -32,3 +32,5 @@ RUN \
 EXPOSE 8888
 
 ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root","--LabApp.token='datatoken'"]
+
+
