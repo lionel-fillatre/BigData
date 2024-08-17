@@ -5,7 +5,7 @@ ENV SPARK_HOME=/opt/spark
 
 # install packages
 RUN \
-  apt-get update && apt-get install -y \
+  apt-get update --fix-missing && apt-get install -y \
   ssh \
   rsync \
   vim \
