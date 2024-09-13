@@ -22,7 +22,8 @@ fi
 # install coursier, scala and almond
 RUN \
   chmod +x cs && \
-  ./cs setup --yes && \
+  echo "export PATH=$PATH:/root/.local/share/coursier/bin" >> ~/.bashrc && \
+  ./cs install scala:3.4.0 && \
   curl -Lo coursier https://git.io/coursier-cli && \
   chmod +x coursier && \
   ./coursier launch --fork almond -- --install && \
@@ -31,6 +32,7 @@ RUN \
 # expose various ports
 EXPOSE 8888
 
+# User directory
+WORKDIR /home/user
+
 ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root","--LabApp.token='datatoken'"]
-
-
