@@ -35,4 +35,4 @@ EXPOSE 8888
 # User directory
 WORKDIR /home/user
 
-ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root","--LabApp.token='datatoken'"]
+ENTRYPOINT ["jupyter", "lab","--ip=0.0.0.0","--allow-root","--IdentityProvider.token='datatoken'"]
