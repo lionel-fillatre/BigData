@@ -1,5 +1,11 @@
+// import the library to run linux shell commands inside the spark shell
+import scala.sys.process._
+// for example, you can run the following linux shell commands: 
+"ls -l opt/spark/work-dir/lab4".!
+"cat /opt/spark/work-dir/lab4/color.txt".!
+
 // first command
-val files = sc.wholeTextFiles("/tmp/*.txt").collect.toList 
+val files = sc.wholeTextFiles("/opt/spark/work-dir/lab4/*.txt").collect.toList 
 
 // second command
 var ch = "hello a b  c   bye"
@@ -17,7 +23,5 @@ val A=sc.parallelize(a)
 val B=sc.parallelize(b)
 val J=A.join(B).collect
 val L=A.leftOuterJoin(B).collect
-
-
 
 
