@@ -8,9 +8,9 @@ import scala.sys.process._
 "cat /opt/spark/work-dir/lab4/vegetable.txt".!
 // 
 // Print the content of this file
-print("\nContent of commands.scala\n-----------------------")
+print("\nContent of commands.scala\n-----------------------\n")
 "cat /opt/spark/work-dir/lab4/commands.scala".!
-print("End of commands.scala\n-----------------------")
+print("End of commands.scala\n-----------------------\n\n")
 //
 // first command
 val files = sc.wholeTextFiles("/opt/spark/work-dir/lab4/*.txt").collect.toList 
