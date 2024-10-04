@@ -3,15 +3,20 @@ import scala.sys.process._
 //
 // for example, you can run the following linux shell commands: 
 "ls -l /opt/spark/work-dir/lab4".!
-"cat /opt/spark/work-dir/lab4/color.txt".!
-"cat /opt/spark/work-dir/lab4/fruit.txt".!
-"cat /opt/spark/work-dir/lab4/vegetable.txt".!
 // 
 // Print the content of this file
 print("\nContent of commands.scala\n-----------------------\n")
 "cat /opt/spark/work-dir/lab4/commands.scala".!
 print("End of commands.scala\n-----------------------\n\n")
 //
+// Print the text files
+print("\nContent of the three text files\n-----------------------\n")
+"cat /opt/spark/work-dir/lab4/color.txt".!
+"cat /opt/spark/work-dir/lab4/fruit.txt".!
+"cat /opt/spark/work-dir/lab4/vegetable.txt".!
+//
+// Run some commands
+print("\nRun some relevant commands\n-----------------------\n")
 // first command
 val files = sc.wholeTextFiles("/opt/spark/work-dir/lab4/*.txt").collect.toList 
 //
