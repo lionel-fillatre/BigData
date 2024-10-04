@@ -6,6 +6,8 @@ import scala.sys.process._
 "cat /opt/spark/work-dir/lab4/color.txt".!
 "cat /opt/spark/work-dir/lab4/fruit.txt".!
 "cat /opt/spark/work-dir/lab4/vegetable.txt".!
+// Print the content of this file
+print("\nContent of commands.scala")
 "cat /opt/spark/work-dir/lab4/commands.scala".!
 //
 // first command
