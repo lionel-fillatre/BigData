@@ -6,7 +6,6 @@ USER root
 # copy all the files for the lab and tune the spark shell
 RUN \
   mkdir /opt/spark/work-dir/lab4 && \
-  mkdir /opt/spark/work-dir/lab5 && \
   cd /opt/spark/work-dir/lab4 && \
   wget -O /opt/spark/work-dir/lab4/commands.scala https://github.com/lionel-fillatre/BigData/raw/main/Lab4/commands.scala && \
   echo 'green\norange\nyellow\nred' > color.txt && \
@@ -15,7 +14,7 @@ RUN \
   echo '"\e[A":history-search-backward' >> /etc/inputrc && \
   echo '"\e[B":history-search-forward' >> /etc/inputrc
 
-# USER hadoop
+# Working directory
 WORKDIR /opt/spark/work-dir/lab4
 
 # Start the spark shell
