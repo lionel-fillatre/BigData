@@ -1,0 +1,317 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "// Import the libraries\r\nimport org.apache.spark.ml.Pipeline\r\nimport org.apache.spark.ml.feature.{IndexToString,StringIndexer}\r\nimport org.apache.spark.ml.classification.DecisionTreeClassifier\r\nimport org.apache.spark.ml.linalg.Vectors\r\n\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:21+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.ml.Pipeline\nimport org.apache.spark.ml.feature.{IndexToString, StringIndexer}\nimport org.apache.spark.ml.classification.DecisionTreeClassifier\nimport org.apache.spark.ml.linalg.Vectors\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038768059_1917044385",
+      "id": "paragraph_1730038768059_1917044385",
+      "dateCreated": "2024-10-27T14:19:28+0000",
+      "dateStarted": "2024-10-27T14:23:21+0000",
+      "dateFinished": "2024-10-27T14:23:21+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2091"
+    },
+    {
+      "text": "// Define the training dataset\r\nval dfTrain = spark.createDataFrame(Seq(\r\n (0, Vectors.dense(39.1), \"sick\"),\r\n (1, Vectors.dense(36.1), \"healthy\"),\r\n (2, Vectors.dense(39.2), \"sick\"),\r\n (3, Vectors.dense(37.0), \"healthy\"),\r\n (4, Vectors.dense(37.1), \"healthy\")\r\n)).toDF(\"id\", \"feature\", \"label\")",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:21+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mdfTrain\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [id: int, feature: vector ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038787229_2023459117",
+      "id": "paragraph_1730038787229_2023459117",
+      "dateCreated": "2024-10-27T14:19:47+0000",
+      "dateStarted": "2024-10-27T14:23:21+0000",
+      "dateFinished": "2024-10-27T14:23:21+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2092"
+    },
+    {
+      "text": "// Create the ML pipeline\r\n\r\n// Convert original labels into indexed labels\r\nval labelIndexer = new StringIndexer().setInputCol(\"label\").setOutputCol(\"indexedLabel\").fit(dfTrain)\r\n\r\n// Convert indexed labels back to original labels.\r\nval labelConverter = new IndexToString().setInputCol(\"prediction\").setOutputCol(\"predictedLabel\").setLabels(labelIndexer.labelsArray(0))\r\n// Train a DecisionTree model.\r\nval dt = new DecisionTreeClassifier().setLabelCol(\"indexedLabel\").setFeaturesCol(\"feature\")\r\n\r\n// Chain labelIndexer, tree and labelConverter in a Pipeline.\r\nval pipeline = new Pipeline().setStages(Array(labelIndexer, dt, labelConverter))\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:22+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mlabelIndexer\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.StringIndexerModel\u001b[0m = StringIndexerModel: uid=strIdx_59da978a6c5c, handleInvalid=error\n\u001b[1m\u001b[34mlabelConverter\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.IndexToString\u001b[0m = idxToStr_f9fc8c6d6272\n\u001b[1m\u001b[34mdt\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.classification.DecisionTreeClassifier\u001b[0m = dtc_734d52be4ea5\n\u001b[1m\u001b[34mpipeline\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.Pipeline\u001b[0m = pipeline_c3f403e010d9\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=12",
+              "$$hashKey": "object:2397"
+            },
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=13",
+              "$$hashKey": "object:2398"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038832749_624410120",
+      "id": "paragraph_1730038832749_624410120",
+      "dateCreated": "2024-10-27T14:20:32+0000",
+      "dateStarted": "2024-10-27T14:23:22+0000",
+      "dateFinished": "2024-10-27T14:23:22+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2093"
+    },
+    {
+      "text": "// Train model. \r\nval model = pipeline.fit(dfTrain)",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:22+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mmodel\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.PipelineModel\u001b[0m = pipeline_c3f403e010d9\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=14",
+              "$$hashKey": "object:2460"
+            },
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=15",
+              "$$hashKey": "object:2461"
+            },
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=16",
+              "$$hashKey": "object:2462"
+            },
+            {
+              "jobUrl": "http://4ab60c89cf3a:4040/jobs/job?id=17",
+              "$$hashKey": "object:2463"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038927695_202583469",
+      "id": "paragraph_1730038927695_202583469",
+      "dateCreated": "2024-10-27T14:22:07+0000",
+      "dateStarted": "2024-10-27T14:23:22+0000",
+      "dateFinished": "2024-10-27T14:23:22+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2094"
+    },
+    {
+      "text": "// Make predictions.\r\nval predictions = model.transform(dfTrain)",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:22+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mpredictions\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [id: int, feature: vector ... 6 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038951126_305566428",
+      "id": "paragraph_1730038951126_305566428",
+      "dateCreated": "2024-10-27T14:22:31+0000",
+      "dateStarted": "2024-10-27T14:23:22+0000",
+      "dateFinished": "2024-10-27T14:23:22+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2095"
+    },
+    {
+      "text": "predictions.show()",
+      "user": "anonymous",
+      "dateUpdated": "2024-10-27T14:23:23+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+-------+-------+------------+-------------+-----------+----------+--------------+\n| id|feature|  label|indexedLabel|rawPrediction|probability|prediction|predictedLabel|\n+---+-------+-------+------------+-------------+-----------+----------+--------------+\n|  0| [39.1]|   sick|         1.0|    [0.0,2.0]|  [0.0,1.0]|       1.0|          sick|\n|  1| [36.1]|healthy|         0.0|    [3.0,0.0]|  [1.0,0.0]|       0.0|       healthy|\n|  2| [39.2]|   sick|         1.0|    [0.0,2.0]|  [0.0,1.0]|       1.0|          sick|\n|  3| [37.0]|healthy|         0.0|    [3.0,0.0]|  [1.0,0.0]|       0.0|       healthy|\n|  4| [37.1]|healthy|         0.0|    [3.0,0.0]|  [1.0,0.0]|       0.0|       healthy|\n+---+-------+-------+------------+-------------+-----------+----------+--------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1730038813634_1499085227",
+      "id": "paragraph_1730038813634_1499085227",
+      "dateCreated": "2024-10-27T14:20:13+0000",
+      "dateStarted": "2024-10-27T14:23:23+0000",
+      "dateFinished": "2024-10-27T14:23:23+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2096"
+    }
+  ],
+  "name": "Decision Tree with MLlib",
+  "id": "2KBYHWHBD",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.11.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+    "isRunning": false
+  },
+  "path": "/Decision Tree with MLlib"
+}
