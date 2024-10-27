@@ -13,14 +13,14 @@ RUN \
   nano \
   gnupg
 
-# download and extract hadoop, set JAVA_HOME in hadoop-env.sh, update path
+# download, extract and install Spark
 RUN \
   wget https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz && \
   tar xzf spark-3.4.1-bin-hadoop3.tgz && \
   mv spark-3.4.1-bin-hadoop3/  $SPARK_HOME && \
   echo "export SPARK_HOME=/opt/spark" >> ~/.bashrc
 
-# download and extract hadoop, set JAVA_HOME in hadoop-env.sh, update path
+# download and extract Zeppelin
 RUN \
   wget https://dlcdn.apache.org/zeppelin/zeppelin-0.11.1/zeppelin-0.11.1-bin-all.tgz && \
   wget https://dlcdn.apache.org/zeppelin/KEYS && \
@@ -29,11 +29,13 @@ RUN \
   gpg --verify zeppelin-0.11.1-bin-all.tgz.asc zeppelin-0.11.1-bin-all.tgz && \
   tar xzf zeppelin-0.11.1-bin-all.tgz
 
+# install Zeppelin
 RUN \
   mv zeppelin-0.11.1-bin-all/ /opt/zeppelin && \
   echo "export ZEPPELIN_HOME=/opt/zeppelin" >> ~/.bashrc && \
   echo "export PATH=$PATH:/opt/zeppelin/bin:/opt/spark/bin:/opt/spark/sbin" >> ~/.bashrc
 
+# Update Zeppelin configuration files
 RUN \
   cp /opt/zeppelin/conf/zeppelin-env.sh.template /opt/zeppelin/conf/zeppelin-env.sh && \
   echo "export USE_HADOOP=false" >> /opt/zeppelin/conf/zeppelin-env.sh && \
