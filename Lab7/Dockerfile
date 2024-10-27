@@ -47,14 +47,11 @@ RUN \
   rm /opt/zeppelin/interpreter/spark/._spark-interpreter-0.11.1.jar && \
   rm /opt/zeppelin/interpreter/spark/scala-2.12/._spark-scala-2.12-0.11.1.jar
 
-
-
 # Download the data files in the user directory
 RUN \
   mkdir /home/user && \  
   wget -O /home/user/churn-test-header.csv https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab7/churn-test-header.csv && \
   wget -O /home/user/churn-train-header.csv https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab7/churn-train-header.csv
-  
 
 # expose various ports
 EXPOSE 8080 8088
