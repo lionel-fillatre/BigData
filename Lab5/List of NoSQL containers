@@ -1,0 +1,43 @@
+MongoDB
+_______
+
+
+docker run -d --name mongo-demo \
+-e MONGO_ROOT_USERNAME=mongoadmin \
+-e MONGO_ROOT_PASSWORD=LikeAndSubscribe \
+-p 27017:27017 \
+mongo:7.0
+
+docker exec -it mongo-demo mongosh
+
+------------------------------------------------------------------
+
+Cassandra
+_________
+
+
+docker run --rm -d --name cassandra --hostname cassandra cassandra
+
+docker exec -it cassandra cqlsh
+
+
+------------------------------------------------------------------
+
+Redis
+_____
+
+
+docker run -d --name redis-demo -p 6379:6379 redis
+
+docker exec -it redis-demo redis-cli
+
+
+------------------------------------------------------------------
+
+Neo4j
+_____
+
+
+docker run --publish=7474:7474 --publish=7687:7687 --env NEO4J_AUTH=none --name neo4j-demo -d neo4j
+
+docker exec -it neo4j-demo cypher-shell 
