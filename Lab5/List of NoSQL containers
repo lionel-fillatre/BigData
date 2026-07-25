@@ -1,7 +1,6 @@
 MongoDB
 _______
 
-
 docker run -d --name mongo-demo \
 -e MONGO_ROOT_USERNAME=mongoadmin \
 -e MONGO_ROOT_PASSWORD=LikeAndSubscribe \
