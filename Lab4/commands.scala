@@ -17,6 +17,7 @@ print("\nContent of the three text files\n-----------------------\n")
 //
 // Run some commands
 print("\nRun some relevant commands\n-----------------------\n")
+//
 // first command
 val files = sc.wholeTextFiles("/opt/spark/work-dir/lab4/*.txt").collect.toList 
 //

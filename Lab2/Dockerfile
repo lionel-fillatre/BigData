@@ -36,7 +36,6 @@ ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/
 ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
 ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
-
 # copy ssh config
 ADD https://raw.githubusercontent.com/lionel-fillatre/BigData/main/Lab2/configs/ssh_config /root/.ssh/config
 
